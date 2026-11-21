@@ -1,0 +1,295 @@
+{
+  "unshifted_test_batch": {
+    "scenario": "unshifted_test_batch",
+    "reference_rows": 4929,
+    "current_rows": 1057,
+    "max_psi": 0.013925,
+    "alert_count": 0,
+    "retraining_recommended": false,
+    "alerts": [],
+    "features": [
+      {
+        "feature": "SeniorCitizen",
+        "psi": 0.0,
+        "ks_statistic": 0.001197,
+        "ks_pvalue": 1.0,
+        "status": "OK"
+      },
+      {
+        "feature": "tenure",
+        "psi": 0.013925,
+        "ks_statistic": 0.03981,
+        "ks_pvalue": 0.1228709,
+        "status": "OK"
+      },
+      {
+        "feature": "MonthlyCharges",
+        "psi": 0.008629,
+        "ks_statistic": 0.023779,
+        "ks_pvalue": 0.6979639,
+        "status": "OK"
+      },
+      {
+        "feature": "TotalCharges",
+        "psi": 0.010762,
+        "ks_statistic": 0.028809,
+        "ks_pvalue": 0.4568289,
+        "status": "OK"
+      },
+      {
+        "feature": "gender",
+        "psi": 0.003157,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "Partner",
+        "psi": 1e-05,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "Dependents",
+        "psi": 0.001565,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "PhoneService",
+        "psi": 0.001993,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "MultipleLines",
+        "psi": 0.002149,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "InternetService",
+        "psi": 0.000331,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "OnlineSecurity",
+        "psi": 0.000383,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "OnlineBackup",
+        "psi": 0.000318,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "DeviceProtection",
+        "psi": 0.000923,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "TechSupport",
+        "psi": 0.000562,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "StreamingTV",
+        "psi": 0.000941,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "StreamingMovies",
+        "psi": 0.004786,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "Contract",
+        "psi": 0.004074,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "PaperlessBilling",
+        "psi": 0.0011,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "PaymentMethod",
+        "psi": 0.002211,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      }
+    ]
+  },
+  "synthetic_covariate_shift": {
+    "scenario": "synthetic_covariate_shift",
+    "reference_rows": 4929,
+    "current_rows": 1057,
+    "max_psi": 6.471274,
+    "alert_count": 4,
+    "retraining_recommended": true,
+    "alerts": [
+      "tenure (ALERT_DRIFT: PSI=6.4713, KS=0.592357)",
+      "MonthlyCharges (ALERT_DRIFT: PSI=1.5014, KS=0.264229)",
+      "InternetService (WARN_MODERATE_SHIFT: PSI=0.1895)",
+      "Contract (ALERT_DRIFT: PSI=0.2572, KS=None)"
+    ],
+    "features": [
+      {
+        "feature": "SeniorCitizen",
+        "psi": 0.0,
+        "ks_statistic": 0.001197,
+        "ks_pvalue": 1.0,
+        "status": "OK"
+      },
+      {
+        "feature": "tenure",
+        "psi": 6.471274,
+        "ks_statistic": 0.592357,
+        "ks_pvalue": 4.060116e-287,
+        "status": "ALERT_DRIFT"
+      },
+      {
+        "feature": "MonthlyCharges",
+        "psi": 1.501403,
+        "ks_statistic": 0.264229,
+        "ks_pvalue": 5.267343e-54,
+        "status": "ALERT_DRIFT"
+      },
+      {
+        "feature": "TotalCharges",
+        "psi": 0.010762,
+        "ks_statistic": 0.028809,
+        "ks_pvalue": 0.4568289,
+        "status": "OK"
+      },
+      {
+        "feature": "gender",
+        "psi": 0.003157,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "Partner",
+        "psi": 1e-05,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "Dependents",
+        "psi": 0.001565,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "PhoneService",
+        "psi": 0.001993,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "MultipleLines",
+        "psi": 0.002149,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "InternetService",
+        "psi": 0.18945,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "WARN_MODERATE_SHIFT"
+      },
+      {
+        "feature": "OnlineSecurity",
+        "psi": 0.000383,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "OnlineBackup",
+        "psi": 0.000318,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "DeviceProtection",
+        "psi": 0.000923,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "TechSupport",
+        "psi": 0.000562,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "StreamingTV",
+        "psi": 0.000941,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "StreamingMovies",
+        "psi": 0.004786,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "Contract",
+        "psi": 0.257193,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "ALERT_DRIFT"
+      },
+      {
+        "feature": "PaperlessBilling",
+        "psi": 0.0011,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      },
+      {
+        "feature": "PaymentMethod",
+        "psi": 0.002211,
+        "ks_statistic": null,
+        "ks_pvalue": null,
+        "status": "OK"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "split_ratios_target": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "split_sizes_actual": {
+    "train": 4929,
+    "val": 1057,
+    "test": 1057
+  },
+  "positive_rate_by_split": {
+    "train": 0.2179,
+    "val": 0.2176,
+    "test": 0.2176
+  },
+  "index_partitions_disjoint": true,
+  "customer_id_overlap_across_splits": false,
+  "forbidden_id_or_target_columns_in_features": [],
+  "exact_target_leak_columns": [],
+  "preprocessing_fit_policy": "fit_on_train_only",
+  "audit_passed": true
+}

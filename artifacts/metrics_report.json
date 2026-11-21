@@ -1,0 +1,108 @@
+{
+  "cost_model": {
+    "cost_fn_usd": 500.0,
+    "cost_fp_usd": 50.0
+  },
+  "validation_primary_model": {
+    "model": "LightGBM (Tuned)",
+    "threshold": 0.135,
+    "pr_auc": 0.4174,
+    "roc_auc": 0.7354,
+    "f1_macro": 0.3951,
+    "precision_churn": 0.2603,
+    "recall_churn": 0.9652,
+    "recall_at_precision": {
+      "target_precision": 0.7,
+      "recall_at_target_precision": 0.0,
+      "actual_precision": 0.625,
+      "threshold_for_target_precision": 1.0
+    },
+    "business_cost": {
+      "tn": 196,
+      "fp": 631,
+      "fn": 8,
+      "tp": 222,
+      "total_cost": 35550.0,
+      "cost_per_customer": 33.6329,
+      "no_action_baseline_cost": 115000.0,
+      "net_cost_savings": 79450.0
+    }
+  },
+  "test_models": {
+    "dummy_prior": {
+      "model": "DummyClassifier (Prior)",
+      "threshold": 0.135,
+      "pr_auc": 0.2176,
+      "roc_auc": 0.5,
+      "f1_macro": 0.1787,
+      "precision_churn": 0.2176,
+      "recall_churn": 1.0,
+      "recall_at_precision": {
+        "target_precision": 0.7,
+        "recall_at_target_precision": 0.0,
+        "actual_precision": 0.21759697256385999,
+        "threshold_for_target_precision": 1.0
+      },
+      "business_cost": {
+        "tn": 0,
+        "fp": 827,
+        "fn": 0,
+        "tp": 230,
+        "total_cost": 41350.0,
+        "cost_per_customer": 39.1202,
+        "no_action_baseline_cost": 115000.0,
+        "net_cost_savings": 73650.0
+      }
+    },
+    "logistic_regression_balanced": {
+      "model": "LogisticRegression (Balanced)",
+      "threshold": 0.5,
+      "pr_auc": 0.4155,
+      "roc_auc": 0.7392,
+      "f1_macro": 0.6084,
+      "precision_churn": 0.3546,
+      "recall_churn": 0.7261,
+      "recall_at_precision": {
+        "target_precision": 0.7,
+        "recall_at_target_precision": 0.0043,
+        "actual_precision": 1.0,
+        "threshold_for_target_precision": 0.8826
+      },
+      "business_cost": {
+        "tn": 523,
+        "fp": 304,
+        "fn": 63,
+        "tp": 167,
+        "total_cost": 46700.0,
+        "cost_per_customer": 44.1816,
+        "no_action_baseline_cost": 115000.0,
+        "net_cost_savings": 68300.0
+      }
+    },
+    "lightgbm_tuned": {
+      "model": "LightGBM (Tuned + Cost Threshold)",
+      "threshold": 0.135,
+      "pr_auc": 0.4113,
+      "roc_auc": 0.7334,
+      "f1_macro": 0.3843,
+      "precision_churn": 0.2569,
+      "recall_churn": 0.9652,
+      "recall_at_precision": {
+        "target_precision": 0.7,
+        "recall_at_target_precision": 0.013,
+        "actual_precision": 0.75,
+        "threshold_for_target_precision": 0.8433
+      },
+      "business_cost": {
+        "tn": 185,
+        "fp": 642,
+        "fn": 8,
+        "tp": 222,
+        "total_cost": 36100.0,
+        "cost_per_customer": 34.1533,
+        "no_action_baseline_cost": 115000.0,
+        "net_cost_savings": 78900.0
+      }
+    }
+  }
+}

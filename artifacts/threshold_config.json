@@ -1,0 +1,33 @@
+{
+  "model_version": "churn-lgbm-v1.0.0",
+  "model_family": "LightGBM",
+  "optimal_threshold": 0.135,
+  "cost_fn": 500.0,
+  "cost_fp": 50.0,
+  "best_hyperparameters": {
+    "n_estimators": 150,
+    "learning_rate": 0.05,
+    "num_leaves": 15,
+    "min_child_samples": 30,
+    "subsample": 0.8,
+    "scale_pos_weight": 3.5894,
+    "val_pr_auc": 0.4174,
+    "val_selection_score": 0.5901
+  },
+  "validation_threshold_summary": {
+    "tn": 196,
+    "fp": 631,
+    "fn": 8,
+    "tp": 222,
+    "total_cost": 35550.0,
+    "cost_per_customer": 33.6329,
+    "no_action_baseline_cost": 115000.0,
+    "net_cost_savings": 79450.0,
+    "f1_macro": 0.3951
+  },
+  "risk_tiers": {
+    "low_max_exclusive": 0.0878,
+    "medium_max_exclusive": 0.135,
+    "high_min_inclusive": 0.135
+  }
+}

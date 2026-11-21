@@ -1,0 +1,12 @@
+# Python environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local downloaded dataset cache
+/data/telco_churn.csv
+/data/telco_churn.sha256
+
+# macOS metadata
+.DS_Store
