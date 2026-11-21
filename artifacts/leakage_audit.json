@@ -10,9 +10,9 @@
     "test": 1057
   },
   "positive_rate_by_split": {
-    "train": 0.2179,
-    "val": 0.2176,
-    "test": 0.2176
+    "train": 0.2654,
+    "val": 0.2658,
+    "test": 0.2649
   },
   "index_partitions_disjoint": true,
   "customer_id_overlap_across_splits": false,

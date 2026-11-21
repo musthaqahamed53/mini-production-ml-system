@@ -1,107 +1,107 @@
 {
   "cost_model": {
-    "cost_fn_usd": 500.0,
-    "cost_fp_usd": 50.0
+    "cost_fn_usd": 250.0,
+    "cost_fp_usd": 60.0
   },
   "validation_primary_model": {
     "model": "LightGBM (Tuned)",
-    "threshold": 0.135,
-    "pr_auc": 0.4174,
-    "roc_auc": 0.7354,
-    "f1_macro": 0.3951,
-    "precision_churn": 0.2603,
-    "recall_churn": 0.9652,
+    "threshold": 0.36,
+    "pr_auc": 0.6486,
+    "roc_auc": 0.834,
+    "f1_macro": 0.6862,
+    "precision_churn": 0.4707,
+    "recall_churn": 0.8577,
     "recall_at_precision": {
       "target_precision": 0.7,
-      "recall_at_target_precision": 0.0,
-      "actual_precision": 0.625,
-      "threshold_for_target_precision": 1.0
+      "recall_at_target_precision": 0.4306,
+      "actual_precision": 0.7035,
+      "threshold_for_target_precision": 0.7661
     },
     "business_cost": {
-      "tn": 196,
-      "fp": 631,
-      "fn": 8,
-      "tp": 222,
-      "total_cost": 35550.0,
-      "cost_per_customer": 33.6329,
-      "no_action_baseline_cost": 115000.0,
-      "net_cost_savings": 79450.0
+      "tn": 505,
+      "fp": 271,
+      "fn": 40,
+      "tp": 241,
+      "total_cost": 26260.0,
+      "cost_per_customer": 24.8439,
+      "no_action_baseline_cost": 70250.0,
+      "net_cost_savings": 43990.0
     }
   },
   "test_models": {
     "dummy_prior": {
       "model": "DummyClassifier (Prior)",
-      "threshold": 0.135,
-      "pr_auc": 0.2176,
+      "threshold": 0.36,
+      "pr_auc": 0.2649,
       "roc_auc": 0.5,
-      "f1_macro": 0.1787,
-      "precision_churn": 0.2176,
-      "recall_churn": 1.0,
+      "f1_macro": 0.4237,
+      "precision_churn": 0.0,
+      "recall_churn": 0.0,
       "recall_at_precision": {
         "target_precision": 0.7,
         "recall_at_target_precision": 0.0,
-        "actual_precision": 0.21759697256385999,
+        "actual_precision": 0.26490066225165565,
         "threshold_for_target_precision": 1.0
       },
       "business_cost": {
-        "tn": 0,
-        "fp": 827,
-        "fn": 0,
-        "tp": 230,
-        "total_cost": 41350.0,
-        "cost_per_customer": 39.1202,
-        "no_action_baseline_cost": 115000.0,
-        "net_cost_savings": 73650.0
+        "tn": 777,
+        "fp": 0,
+        "fn": 280,
+        "tp": 0,
+        "total_cost": 70000.0,
+        "cost_per_customer": 66.2252,
+        "no_action_baseline_cost": 70000.0,
+        "net_cost_savings": 0.0
       }
     },
     "logistic_regression_balanced": {
       "model": "LogisticRegression (Balanced)",
       "threshold": 0.5,
-      "pr_auc": 0.4155,
-      "roc_auc": 0.7392,
-      "f1_macro": 0.6084,
-      "precision_churn": 0.3546,
-      "recall_churn": 0.7261,
+      "pr_auc": 0.6409,
+      "roc_auc": 0.849,
+      "f1_macro": 0.7138,
+      "precision_churn": 0.5078,
+      "recall_churn": 0.8107,
       "recall_at_precision": {
         "target_precision": 0.7,
-        "recall_at_target_precision": 0.0043,
-        "actual_precision": 1.0,
-        "threshold_for_target_precision": 0.8826
+        "recall_at_target_precision": 0.425,
+        "actual_precision": 0.7,
+        "threshold_for_target_precision": 0.7969
       },
       "business_cost": {
-        "tn": 523,
-        "fp": 304,
-        "fn": 63,
-        "tp": 167,
-        "total_cost": 46700.0,
-        "cost_per_customer": 44.1816,
-        "no_action_baseline_cost": 115000.0,
-        "net_cost_savings": 68300.0
+        "tn": 557,
+        "fp": 220,
+        "fn": 53,
+        "tp": 227,
+        "total_cost": 26450.0,
+        "cost_per_customer": 25.0237,
+        "no_action_baseline_cost": 70000.0,
+        "net_cost_savings": 43550.0
       }
     },
     "lightgbm_tuned": {
       "model": "LightGBM (Tuned + Cost Threshold)",
-      "threshold": 0.135,
-      "pr_auc": 0.4113,
-      "roc_auc": 0.7334,
-      "f1_macro": 0.3843,
-      "precision_churn": 0.2569,
-      "recall_churn": 0.9652,
+      "threshold": 0.36,
+      "pr_auc": 0.6618,
+      "roc_auc": 0.848,
+      "f1_macro": 0.6915,
+      "precision_churn": 0.4741,
+      "recall_churn": 0.8821,
       "recall_at_precision": {
         "target_precision": 0.7,
-        "recall_at_target_precision": 0.013,
-        "actual_precision": 0.75,
-        "threshold_for_target_precision": 0.8433
+        "recall_at_target_precision": 0.4393,
+        "actual_precision": 0.7029,
+        "threshold_for_target_precision": 0.7741
       },
       "business_cost": {
-        "tn": 185,
-        "fp": 642,
-        "fn": 8,
-        "tp": 222,
-        "total_cost": 36100.0,
-        "cost_per_customer": 34.1533,
-        "no_action_baseline_cost": 115000.0,
-        "net_cost_savings": 78900.0
+        "tn": 503,
+        "fp": 274,
+        "fn": 33,
+        "tp": 247,
+        "total_cost": 24690.0,
+        "cost_per_customer": 23.3586,
+        "no_action_baseline_cost": 70000.0,
+        "net_cost_savings": 45310.0
       }
     }
   }

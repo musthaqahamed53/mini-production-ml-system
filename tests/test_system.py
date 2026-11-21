@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 import pandas as pd
 import pytest
@@ -104,20 +109,30 @@ def test_malformed_payloads_return_422(client: TestClient, bad_payload: dict) ->
 
 
 def test_missing_values_unseen_categories_and_outliers(client: TestClient) -> None:
-    edge_payload = _valid_payload(
-        customer_id="EDGE-999",
+    missing_and_unseen_payload = _valid_payload(
+        customer_id="EDGE-MISSING-UNSEEN",
         TotalCharges=None,
         InternetService="Satellite-5G-Unseen",
         PaymentMethod="Crypto-Wallet-Unseen",
+    )
+    resp_missing = client.post("/predict", json=missing_and_unseen_payload)
+    assert resp_missing.status_code == 200
+    body_missing = resp_missing.json()
+    assert 0.0 <= body_missing["churn_probability"] <= 1.0
+    assert body_missing["degraded_mode"] is False
+
+    # 2. Extreme numeric outliers within valid schema bounds
+    outlier_payload = _valid_payload(
+        customer_id="EDGE-OUTLIER",
         tenure=118.0,
         MonthlyCharges=950.0,
         TotalCharges=98000.0,
     )
-    resp = client.post("/predict", json=edge_payload)
-    assert resp.status_code == 200
-    body = resp.json()
-    assert 0.0 <= body["churn_probability"] <= 1.0
-    assert body["degraded_mode"] is False
+    resp_outlier = client.post("/predict", json=outlier_payload)
+    assert resp_outlier.status_code == 200
+    body_outlier = resp_outlier.json()
+    assert 0.0 <= body_outlier["churn_probability"] <= 1.0
+    assert body_outlier["degraded_mode"] is False
 
 
 def test_graceful_fallback_on_primary_failure(client: TestClient) -> None:

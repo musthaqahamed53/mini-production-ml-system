@@ -60,7 +60,7 @@ class ChurnPredictionRequest(BaseModel):
 
 class ChurnPredictionResponse(BaseModel):
     """Structured prediction response returned by POST /predict."""
-
+    model_config = ConfigDict(protected_namespaces=())
     customer_id: str
     churn_probability: float = Field(..., ge=0.0, le=1.0)
     churn_prediction: int = Field(..., ge=0, le=1)
@@ -74,6 +74,7 @@ class ChurnPredictionResponse(BaseModel):
 class HealthResponse(BaseModel):
     """Service health and artifact readiness payload for GET /health."""
 
+    model_config = ConfigDict(protected_namespaces=())
     status: Literal["ok", "degraded"]
     model_version: str
     primary_model_loaded: bool

@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import List
 from urllib.error import URLError
 from urllib.request import urlopen
+import requests
 
 import numpy as np
 import pandas as pd
@@ -169,8 +170,9 @@ def fetch_and_cache_dataset(
     for url in SOURCE_URLS:
         try:
             logger.info("Attempting download from %s", url)
-            with urlopen(url, timeout=15) as response:  # nosec B310
-                raw_bytes = response.read()
+            resp = requests.get(url, timeout=15)
+            resp.raise_for_status()
+            raw_bytes = resp.content
             temp_path = output_path.with_suffix(".tmp.csv")
             temp_path.write_bytes(raw_bytes)
             df = pd.read_csv(temp_path)

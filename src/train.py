@@ -26,8 +26,8 @@ MODEL_VERSION = "churn-lgbm-v1.0.0"
 # Explicit retention economics (USD per subscriber):
 # False Negative (missed churner): lose expected net contribution / retention value ($500)
 # False Positive (unnecessary retention incentive offered to non-churner): discount/outreach cost ($50)
-DEFAULT_COST_FN: float = 500.0
-DEFAULT_COST_FP: float = 50.0
+DEFAULT_COST_FN: float = 250.0
+DEFAULT_COST_FP: float = 60.0
 
 
 def compute_expected_business_cost(
