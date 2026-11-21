@@ -6,39 +6,40 @@ End-to-end, leak-free production Machine Learning system for **Customer Churn Pr
 
 ```mermaid
 flowchart LR
-    subgraph Ingestion_Split["1. Ingestion & Leak-Free Split (data/ & src/data_pipeline.py)"]
-        RAW["Telco Churn CSV<br/>(Cached + SHA-256 Verified)"] --> AUDIT["Leakage Audit &<br/>70/15/15 Stratified Split"]
-        AUDIT --> TR["Train (70%)"]
-        AUDIT --> VA["Validation (15%)"]
-        AUDIT --> TE["Test (15%)"]
+    subgraph Step1["1. Data Ingestion and Split"]
+        D["data/fetch_data.py<br/>IBM Telco CSV (7,043 rows)<br/>SHA-256: 16320c9c1ec7"] --> P["src/data_pipeline.py<br/>Cleaning + Leakage Audit"]
+        P --> TR["Train (70%)"]
+        P --> VA["Validation (15%)"]
+        P --> TE["Test (15%)"]
     end
 
-    subgraph Training_Eval["2. Training, Cost Thresholding & Eval (src/train.py, src/evaluate.py)"]
-        TR --> PREP["ColumnTransformer<br/>(Impute + Scale + OHE)"]
-        PREP --> BASE["Baselines:<br/>Dummy (Prior) & LogReg"]
-        PREP --> LGB["Tuned LightGBM<br/>(scale_pos_weight)"]
-        VA --> OPT["Business Cost Threshold<br/>Optimization (C_FN, C_FP)"]
-        LGB --> OPT
-        OPT --> ART["artifacts/<br/>pipeline.joblib, fallback.joblib,<br/>threshold_config.json, metrics & plots"]
-        TE --> EVAL["Test Evaluation:<br/>PR-AUC, Recall@P>=0.70,<br/>F1-macro, Cost Savings"]
-        ART --> EVAL
+    subgraph Step2["2. Training and Evaluation"]
+        TR --> CT["ColumnTransformer<br/>(Impute + Scale + OneHot)<br/>Fitted on Train Only"]
+        CT --> B["Baselines:<br/>Dummy and Balanced LogReg"]
+        CT --> L["Tuned LightGBM<br/>(scale_pos_weight=2.7683)"]
+        VA --> TH["Threshold Tuning<br/>FN=$250, FP=$60 -> 0.36"]
+        L --> TH
+        TH --> ART["artifacts/<br/>churn_pipeline.joblib<br/>fallback_pipeline.joblib<br/>threshold_config.json"]
+        TE --> EV["src/evaluate.py<br/>Metrics JSON and 3 Plots"]
+        ART --> EV
     end
 
-    subgraph Serving["3. Decoupled Inference & Resilience (serving/)"]
-        CLIENT["REST Client / Batch CSV"] --> SCHEMA["Pydantic v2 Schema<br/>Validation (422 on invalid)"]
-        SCHEMA --> API["FastAPI (/health, /predict)"]
-        SCHEMA --> BATCH["CLI Batch Scorer<br/>(predict_batch.py)"]
-        API --> ART
-        BATCH --> ART
-        API -. "Exception / Degraded" .-> FB["Fallback Risk Estimator<br/>(degraded_mode=true)"]
+    subgraph Step3["3. Serving Interfaces"]
+        REQ["JSON Request"] --> SCH["Pydantic v2 Validation<br/>(HTTP 422 on Bad Input)"]
+        SCH --> API["FastAPI serving/app.py<br/>/health and /predict"]
+        CSV["Input CSV"] --> CLI["serving/predict_batch.py<br/>Batch CLI Scorer"]
+        ART --> API
+        ART --> CLI
+        API -. "On Error" .-> FB["Fallback Pipeline<br/>(degraded_mode=true)"]
+        CLI --> OUT["artifacts/batch_predictions.csv"]
     end
 
-    subgraph Ops["4. Profiling & Drift Monitoring (serving/benchmark.py, src/drift_monitor.py)"]
-        API --> BENCH["Latency Benchmark<br/>(250+ reqs: p50/p95/p99)"]
-        BATCH --> BPROF["Batch Throughput<br/>(records/sec)"]
-        TE --> DRIFT["PSI & Two-Sample KS<br/>Drift Monitor"]
+    subgraph Step4["4. Testing, Benchmarking and Drift"]
+        API --> BM["serving/benchmark.py<br/>250 Requests + Batch Profile"]
+        TE --> DR["src/drift_monitor.py<br/>PSI and KS -> drift_report.json"]
+        API --> TS["tests/test_system.py<br/>11/11 Pytest Checks"]
     end
-````
+```
 
 ## Serialized Artifacts (`artifacts/`)
 
